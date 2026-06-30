@@ -1,54 +1,55 @@
-# dev-init
+# @ruu5lp/dev-init
 
-CLI tool to scaffold new projects with language, AI, and feature composition.
+プロジェクトを対話形式で高速に立ち上げるCLIツールです。
+言語・AI・機能を選ぶだけで、必要なファイルを自動生成します。
 
-## Install
+## インストール
 
 ```bash
-npm install -g dev-init
+npm install -g @ruu5lp/dev-init
 ```
 
-## Usage
+## 使い方
 
 ```bash
-# Interactive mode (creates ./project-name/ directory)
+# 対話形式でプロジェクトを生成（./プロジェクト名/ に出力）
 dev-init
 
-# Generate in current directory
+# 現在のディレクトリに生成
 dev-init --here
 
-# Specify output directory
+# 出力先を指定
 dev-init --output ~/projects
 
-# Update cached templates
+# テンプレートを最新版に更新
 dev-init update-templates
 ```
 
-## What it generates
+## 生成されるファイル構成
 
 ```
 my-project/
 ├── README.md
 ├── .gitignore
 ├── .env.example
-├── package.json          # merged from language + feature patches
-├── tsconfig.json         # (TypeScript only)
-├── CLAUDE.md             # symlink → .ai/claude/CLAUDE.md
-├── CODEX.md              # symlink → .ai/codex/CODEX.md
+├── package.json          # 選択した機能に応じて自動生成
+├── tsconfig.json         # TypeScript選択時
+├── CLAUDE.md             # .ai/claude/CLAUDE.md へのシンボリックリンク
+├── CODEX.md              # .ai/codex/CODEX.md へのシンボリックリンク
 ├── src/
 │   └── index.ts
-├── tests/                # (if Vitest selected)
-├── .github/workflows/    # (if GitHub Actions selected)
-├── docker-compose.yml    # (if Docker selected)
-├── eslint.config.js      # (if ESLint selected)
-├── .prettierrc           # (if Prettier selected)
+├── tests/                # Vitest選択時
+├── .github/workflows/    # GitHub Actions選択時
+├── docker-compose.yml    # Docker選択時
+├── eslint.config.js      # ESLint選択時
+├── .prettierrc           # Prettier選択時
 └── .ai/
-    ├── company/
+    ├── company/          # 社内共通ルール
     │   ├── coding-standard.md
     │   ├── git-workflow.md
     │   ├── review-policy.md
     │   └── security.md
-    ├── project/
+    ├── project/          # プロジェクト固有ルール
     │   ├── overview.md
     │   ├── architecture.md
     │   ├── conventions.md
@@ -59,37 +60,38 @@ my-project/
         └── CODEX.md
 ```
 
-## Supported Combinations
+## 対応言語
 
-### Languages
-| ID | Label |
+| ID | 言語 |
 |---|---|
-| `typescript` | TypeScript (Node.js ESM) |
-| `laravel` | Laravel (PHP) |
+| `typescript` | TypeScript（Node.js ESM） |
+| `laravel` | Laravel（PHP） |
 | `python` | Python 3.x |
 
-### AI Providers
-| ID | Config file |
+## 対応AI
+
+| ID | 設定ファイル |
 |---|---|
 | `claude` | `CLAUDE.md` |
 | `codex` | `CODEX.md` |
 
-### Features
-| ID | Compatible Languages |
+## 対応機能（Feature）
+
+| ID | 対応言語 |
 |---|---|
-| `github-actions` | All |
-| `docker` | All |
-| `discord` | All |
-| `line-bot` | TypeScript, Python |
-| `lark` | All |
+| `github-actions` | すべて |
+| `docker` | すべて |
+| `discord` | すべて |
+| `line-bot` | TypeScript・Python |
+| `lark` | すべて |
 | `eslint` | TypeScript |
 | `prettier` | TypeScript |
 | `vitest` | TypeScript |
 
-## Templates
+## テンプレートについて
 
-Templates are fetched from [dev-init-templates](https://github.com/Ruu5LP/dev-init-templates) and cached in `~/.dev-init/templates/`.
+テンプレートは [dev-init-templates](https://github.com/Ruu5LP/dev-init-templates) から取得し、`~/.dev-init/templates/` にキャッシュされます。
 
-## License
+## ライセンス
 
 MIT
